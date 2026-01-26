@@ -61,3 +61,25 @@ html {
     background: #d97706;
     color: white;
 }
+
+/* RTL Support for Arabic */
+[dir="rtl"] {
+    font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+}
+
+[dir="rtl"] .font-arabic {
+    font-family: 'Noto Sans Arabic', 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* Ensure proper text alignment in RTL */
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+    text-align: right;
+}
+
+[dir="ltr"] input,
+[dir="ltr"] textarea,
+[dir="ltr"] select {
+    text-align: left;
+}

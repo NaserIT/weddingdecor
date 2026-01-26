@@ -8,9 +8,27 @@ import { Checkbox } from './ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import { Card, CardContent } from './ui/card';
 import { toast } from 'sonner';
-import { companyInfo, productCategories } from '../data/mock';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
+
+const companyInfo = {
+  phone: "+49 123 456 7890",
+  email: "info@perfectweddingdeko.de",
+  address: {
+    street: "Musterstraße 123",
+    city: "12345 Musterstadt",
+    country: "Deutschland"
+  },
+  socialMedia: {
+    instagram: "https://instagram.com/perfectweddingdeko",
+    facebook: "https://facebook.com/perfectweddingdeko"
+  }
+};
 
 const ContactSection = () => {
+  const { currentLang, isRTL } = useLanguage();
+  const t = translations[currentLang].contact;
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -34,14 +52,13 @@ const ContactSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Validation
     if (!formData.name || !formData.email || !formData.message) {
-      toast.error('Bitte füllen Sie alle Pflichtfelder aus.');
+      toast.error(t.errorRequired);
       return;
     }
 
     if (!acceptTerms) {
-      toast.error('Bitte akzeptieren Sie die Datenschutzbestimmungen.');
+      toast.error(t.errorPrivacy);
       return;
     }
 
@@ -50,7 +67,7 @@ const ContactSection = () => {
     // Simulate form submission (Mock)
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    toast.success('Vielen Dank! Ihre Anfrage wurde erfolgreich gesendet.');
+    toast.success(t.success);
     setFormData({
       name: '',
       email: '',
@@ -66,38 +83,38 @@ const ContactSection = () => {
   const contactInfo = [
     {
       icon: Phone,
-      label: 'Telefon',
+      label: t.phone,
       value: companyInfo.phone,
       href: `tel:${companyInfo.phone}`
     },
     {
       icon: Mail,
-      label: 'E-Mail',
+      label: t.email,
       value: companyInfo.email,
       href: `mailto:${companyInfo.email}`
     },
     {
       icon: MapPin,
-      label: 'Adresse',
+      label: t.address,
       value: `${companyInfo.address.street}, ${companyInfo.address.city}`,
       href: '#'
     }
   ];
 
   return (
-    <section id="contact" className="py-24 bg-gradient-to-b from-stone-50 to-stone-100">
+    <section id="contact" className="py-24 bg-gradient-to-b from-stone-50 to-stone-100" dir={isRTL ? 'rtl' : 'ltr'}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 bg-emerald-100 text-emerald-800 text-sm font-medium rounded-full mb-4">
-            Kontakt
+            {t.badge}
           </span>
           <h2 className="text-3xl md:text-5xl font-bold text-emerald-950 mb-4">
-            Lassen Sie uns Ihre
-            <span className="text-amber-600"> Traumhochzeit</span> planen
+            {t.title}
+            <span className="text-amber-600"> {t.titleHighlight}</span> {t.titleEnd}
           </h2>
           <p className="text-lg text-stone-600 max-w-2xl mx-auto">
-            Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden bei Ihnen.
+            {t.description}
           </p>
         </div>
 
@@ -107,11 +124,11 @@ const ContactSection = () => {
             {contactInfo.map((info, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
-                  <a href={info.href} className="flex items-center gap-4 group">
+                  <a href={info.href} className={`flex items-center gap-4 group ${isRTL ? 'flex-row-reverse' : ''}`}>
                     <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
                       <info.icon className="w-5 h-5 text-emerald-700" />
                     </div>
-                    <div>
+                    <div className={isRTL ? 'text-right' : ''}>
                       <p className="text-sm text-stone-500">{info.label}</p>
                       <p className="font-semibold text-emerald-900 group-hover:text-emerald-700 transition-colors">
                         {info.value}
@@ -125,8 +142,8 @@ const ContactSection = () => {
             {/* Social Media */}
             <Card className="border-0 shadow-lg">
               <CardContent className="p-6">
-                <p className="text-sm text-stone-500 mb-4">Folgen Sie uns</p>
-                <div className="flex items-center gap-4">
+                <p className={`text-sm text-stone-500 mb-4 ${isRTL ? 'text-right' : ''}`}>{t.followUs}</p>
+                <div className={`flex items-center gap-4 ${isRTL ? 'flex-row-reverse justify-end' : ''}`}>
                   <a
                     href={companyInfo.socialMedia.instagram}
                     target="_blank"
@@ -155,24 +172,24 @@ const ContactSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name - Required */}
                   <div className="space-y-2">
-                    <Label htmlFor="name" className="text-emerald-900">
-                      Name <span className="text-red-500">*</span>
+                    <Label htmlFor="name" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                      {t.form.name} <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
-                      placeholder="Ihr Name"
+                      placeholder={t.form.namePlaceholder}
                       required
-                      className="border-stone-200 focus:border-emerald-500 focus:ring-emerald-500"
+                      className={`border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 ${isRTL ? 'text-right' : ''}`}
                     />
                   </div>
 
                   {/* Email - Required */}
                   <div className="space-y-2">
-                    <Label htmlFor="email" className="text-emerald-900">
-                      E-Mail <span className="text-red-500">*</span>
+                    <Label htmlFor="email" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                      {t.form.emailLabel} <span className="text-red-500">*</span>
                     </Label>
                     <Input
                       id="email"
@@ -180,16 +197,16 @@ const ContactSection = () => {
                       type="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="ihre@email.de"
+                      placeholder={t.form.emailPlaceholder}
                       required
-                      className="border-stone-200 focus:border-emerald-500 focus:ring-emerald-500"
+                      className={`border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 ${isRTL ? 'text-right' : ''}`}
                     />
                   </div>
 
                   {/* Phone - Optional */}
                   <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-emerald-900">
-                      Telefon <span className="text-stone-400 text-sm">(optional)</span>
+                    <Label htmlFor="phone" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                      {t.phone} <span className="text-stone-400 text-sm">({t.form.optional})</span>
                     </Label>
                     <Input
                       id="phone"
@@ -197,15 +214,15 @@ const ContactSection = () => {
                       type="tel"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="+49 123 456 7890"
-                      className="border-stone-200 focus:border-emerald-500 focus:ring-emerald-500"
+                      placeholder={t.form.phonePlaceholder}
+                      className={`border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 ${isRTL ? 'text-right' : ''}`}
                     />
                   </div>
 
                   {/* Event Date - Optional */}
                   <div className="space-y-2">
-                    <Label htmlFor="eventDate" className="text-emerald-900">
-                      Veranstaltungsdatum <span className="text-stone-400 text-sm">(optional)</span>
+                    <Label htmlFor="eventDate" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                      {t.form.eventDate} <span className="text-stone-400 text-sm">({t.form.optional})</span>
                     </Label>
                     <Input
                       id="eventDate"
@@ -220,15 +237,15 @@ const ContactSection = () => {
 
                 {/* Products - Optional */}
                 <div className="space-y-2">
-                  <Label htmlFor="products" className="text-emerald-900">
-                    Gewünschte Produkte <span className="text-stone-400 text-sm">(optional)</span>
+                  <Label htmlFor="products" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                    {t.form.products} <span className="text-stone-400 text-sm">({t.form.optional})</span>
                   </Label>
                   <Select value={formData.products} onValueChange={handleSelectChange}>
-                    <SelectTrigger className="border-stone-200 focus:border-emerald-500 focus:ring-emerald-500">
-                      <SelectValue placeholder="Wählen Sie eine Kategorie" />
+                    <SelectTrigger className={`border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 ${isRTL ? 'text-right' : ''}`}>
+                      <SelectValue placeholder={t.form.productsPlaceholder} />
                     </SelectTrigger>
                     <SelectContent>
-                      {productCategories.map((category) => (
+                      {t.categories.map((category) => (
                         <SelectItem key={category} value={category}>
                           {category}
                         </SelectItem>
@@ -239,31 +256,31 @@ const ContactSection = () => {
 
                 {/* Message - Required */}
                 <div className="space-y-2">
-                  <Label htmlFor="message" className="text-emerald-900">
-                    Ihre Nachricht <span className="text-red-500">*</span>
+                  <Label htmlFor="message" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                    {t.form.message} <span className="text-red-500">*</span>
                   </Label>
                   <Textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Erzählen Sie uns von Ihren Vorstellungen..."
+                    placeholder={t.form.messagePlaceholder}
                     rows={5}
                     required
-                    className="border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 resize-none"
+                    className={`border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 resize-none ${isRTL ? 'text-right' : ''}`}
                   />
                 </div>
 
                 {/* Privacy Checkbox */}
-                <div className="flex items-start gap-3">
+                <div className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                   <Checkbox
                     id="terms"
                     checked={acceptTerms}
                     onCheckedChange={setAcceptTerms}
                     className="mt-1 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
                   />
-                  <Label htmlFor="terms" className="text-sm text-stone-600 cursor-pointer">
-                    Ich akzeptiere die Datenschutzbestimmungen und bin mit der Verarbeitung meiner Daten einverstanden. <span className="text-red-500">*</span>
+                  <Label htmlFor="terms" className={`text-sm text-stone-600 cursor-pointer ${isRTL ? 'text-right' : ''}`}>
+                    {t.form.privacy} <span className="text-red-500">*</span>
                   </Label>
                 </div>
 
@@ -274,20 +291,20 @@ const ContactSection = () => {
                   className="w-full bg-emerald-800 hover:bg-emerald-900 text-white py-6 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02]"
                 >
                   {isSubmitting ? (
-                    <span className="flex items-center gap-2">
+                    <span className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                       <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                      Wird gesendet...
+                      {t.form.sending}
                     </span>
                   ) : (
-                    <span className="flex items-center gap-2">
+                    <span className={`flex items-center justify-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
                       <Send className="w-5 h-5" />
-                      Anfrage senden
+                      {t.form.submit}
                     </span>
                   )}
                 </Button>
 
                 <p className="text-center text-sm text-stone-500">
-                  <span className="text-red-500">*</span> Pflichtfelder
+                  <span className="text-red-500">*</span> {t.form.required}
                 </p>
               </form>
             </CardContent>
