@@ -1,11 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 import { Button } from './ui/button';
-import { companyInfo } from '../data/mock';
+import { useLanguage } from '../context/LanguageContext';
+import { translations } from '../data/translations';
+import LanguageSwitcher from './LanguageSwitcher';
+
+const companyInfo = {
+  name: "The Perfect Wedding Deko",
+  phone: "+49 123 456 7890"
+};
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { currentLang, isRTL } = useLanguage();
+  const t = translations[currentLang];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,10 +25,10 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { href: '#home', label: 'Start' },
-    { href: '#products', label: 'Produkte' },
-    { href: '#about', label: 'Über uns' },
-    { href: '#contact', label: 'Kontakt' }
+    { href: '#home', label: t.nav.home },
+    { href: '#products', label: t.nav.products },
+    { href: '#about', label: t.nav.about },
+    { href: '#contact', label: t.nav.contact }
   ];
 
   const scrollToSection = (href) => {
@@ -39,11 +48,11 @@ const Header = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between">
+        <div className={`flex items-center justify-between ${isRTL ? 'flex-row-reverse' : ''}`}>
           {/* Logo */}
           <button
             onClick={() => scrollToSection('#home')}
-            className="flex items-center gap-3 group"
+            className={`flex items-center gap-3 group ${isRTL ? 'flex-row-reverse' : ''}`}
           >
             <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
               isScrolled ? 'bg-emerald-800' : 'bg-white/20 backdrop-blur-sm'
@@ -60,7 +69,7 @@ const Header = () => {
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className={`hidden md:flex items-center gap-8 ${isRTL ? 'flex-row-reverse' : ''}`}>
             {navLinks.map((link) => (
               <button
                 key={link.href}
@@ -74,11 +83,12 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:flex items-center gap-4">
+          {/* CTA Button & Language Switcher */}
+          <div className={`hidden md:flex items-center gap-4 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <LanguageSwitcher isScrolled={isScrolled} />
             <a
               href={`tel:${companyInfo.phone}`}
-              className={`flex items-center gap-2 text-sm font-medium transition-colors duration-300 ${
+              className={`flex items-center gap-2 text-sm font-medium transition-colors duration-300 ${isRTL ? 'flex-row-reverse' : ''} ${
                 isScrolled ? 'text-emerald-800' : 'text-white'
               }`}
             >
@@ -93,19 +103,22 @@ const Header = () => {
                   : 'bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30'
               }`}
             >
-              Anfragen
+              {t.nav.inquire}
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`md:hidden p-2 rounded-lg transition-colors ${
-              isScrolled ? 'text-emerald-900' : 'text-white'
-            }`}
-          >
-            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          <div className={`md:hidden flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>
+            <LanguageSwitcher isScrolled={isScrolled} />
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`p-2 rounded-lg transition-colors ${
+                isScrolled ? 'text-emerald-900' : 'text-white'
+              }`}
+            >
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
@@ -116,7 +129,7 @@ const Header = () => {
                 <button
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
-                  className={`text-left text-base font-medium ${
+                  className={`text-base font-medium ${isRTL ? 'text-right' : 'text-left'} ${
                     isScrolled ? 'text-emerald-900' : 'text-white'
                   }`}
                 >
@@ -127,7 +140,7 @@ const Header = () => {
                 onClick={() => scrollToSection('#contact')}
                 className="mt-2 bg-emerald-800 hover:bg-emerald-900 text-white w-full"
               >
-                Jetzt anfragen
+                {t.nav.inquire}
               </Button>
             </nav>
           </div>
