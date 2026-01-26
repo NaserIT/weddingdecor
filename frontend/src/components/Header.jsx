@@ -1,0 +1,140 @@
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Phone } from 'lucide-react';
+import { Button } from './ui/button';
+import { companyInfo } from '../data/mock';
+
+const Header = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { href: '#home', label: 'Start' },
+    { href: '#products', label: 'Produkte' },
+    { href: '#about', label: 'Über uns' },
+    { href: '#contact', label: 'Kontakt' }
+  ];
+
+  const scrollToSection = (href) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    setIsMobileMenuOpen(false);
+  };
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
+          : 'bg-transparent py-5'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <button
+            onClick={() => scrollToSection('#home')}
+            className="flex items-center gap-3 group"
+          >
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
+              isScrolled ? 'bg-emerald-800' : 'bg-white/20 backdrop-blur-sm'
+            }`}>
+              <span className={`text-lg font-bold ${
+                isScrolled ? 'text-amber-400' : 'text-white'
+              }`}>PW</span>
+            </div>
+            <span className={`text-lg font-semibold tracking-wide transition-colors duration-300 ${
+              isScrolled ? 'text-emerald-900' : 'text-white'
+            }`}>
+              {companyInfo.name}
+            </span>
+          </button>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <button
+                key={link.href}
+                onClick={() => scrollToSection(link.href)}
+                className={`text-sm font-medium tracking-wide transition-all duration-300 hover:opacity-70 ${
+                  isScrolled ? 'text-emerald-900' : 'text-white'
+                }`}
+              >
+                {link.label}
+              </button>
+            ))}
+          </nav>
+
+          {/* CTA Button */}
+          <div className="hidden md:flex items-center gap-4">
+            <a
+              href={`tel:${companyInfo.phone}`}
+              className={`flex items-center gap-2 text-sm font-medium transition-colors duration-300 ${
+                isScrolled ? 'text-emerald-800' : 'text-white'
+              }`}
+            >
+              <Phone className="w-4 h-4" />
+              {companyInfo.phone}
+            </a>
+            <Button
+              onClick={() => scrollToSection('#contact')}
+              className={`transition-all duration-300 ${
+                isScrolled
+                  ? 'bg-emerald-800 hover:bg-emerald-900 text-white'
+                  : 'bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30'
+              }`}
+            >
+              Anfragen
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className={`md:hidden p-2 rounded-lg transition-colors ${
+              isScrolled ? 'text-emerald-900' : 'text-white'
+            }`}
+          >
+            {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden mt-4 pb-4 border-t border-white/20">
+            <nav className="flex flex-col gap-4 pt-4">
+              {navLinks.map((link) => (
+                <button
+                  key={link.href}
+                  onClick={() => scrollToSection(link.href)}
+                  className={`text-left text-base font-medium ${
+                    isScrolled ? 'text-emerald-900' : 'text-white'
+                  }`}
+                >
+                  {link.label}
+                </button>
+              ))}
+              <Button
+                onClick={() => scrollToSection('#contact')}
+                className="mt-2 bg-emerald-800 hover:bg-emerald-900 text-white w-full"
+              >
+                Jetzt anfragen
+              </Button>
+            </nav>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+};
+
+export default Header;
