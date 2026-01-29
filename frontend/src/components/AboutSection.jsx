@@ -26,10 +26,10 @@ const AboutSection = () => {
             </div>
             {/* Decorative Frame */}
             <div className={`absolute -bottom-6 ${isRTL ? '-left-6' : '-right-6'} w-full h-full border-4 border-amber-400 rounded-2xl -z-10`} />
-            <div className={`absolute -top-6 ${isRTL ? '-right-6' : '-left-6'} w-32 h-32 bg-emerald-100 rounded-full -z-10`} />
+            <div className={`absolute -top-6 ${isRTL ? '-right-6' : '-left-6'} w-32 h-32 bg-wedding-100 rounded-full -z-10`} />
             
             {/* Stats Badge */}
-            <div className={`absolute -bottom-4 ${isRTL ? '-right-4' : '-left-4'} bg-emerald-800 text-white p-6 rounded-xl shadow-xl z-20`}>
+            <div className={`absolute -bottom-4 ${isRTL ? '-right-4' : '-left-4'} bg-wedding-600 text-white p-6 rounded-xl shadow-xl z-20`}>
               <div className="text-3xl font-bold text-amber-400">10+</div>
               <div className="text-sm text-white/80">{t.experience}</div>
             </div>
@@ -37,10 +37,10 @@ const AboutSection = () => {
 
           {/* Content Side */}
           <div className={isRTL ? 'lg:col-start-1' : ''}>
-            <span className="inline-block px-4 py-1.5 bg-emerald-100 text-emerald-800 text-sm font-medium rounded-full mb-4">
+            <span className="inline-block px-4 py-1.5 bg-wedding-100 text-wedding-700 text-sm font-medium rounded-full mb-4">
               {t.badge}
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-emerald-950 mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-wedding-800 mb-6">
               {t.title}
               <span className="text-amber-600"> {t.titleHighlight}</span>
             </h2>
@@ -57,11 +57,11 @@ const AboutSection = () => {
                 const Icon = featureIcons[index];
                 return (
                   <div key={index} className={`flex items-start gap-3 ${isRTL ? 'flex-row-reverse text-right' : ''}`}>
-                    <div className="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-5 h-5 text-emerald-700" />
+                    <div className="w-10 h-10 rounded-lg bg-wedding-100 flex items-center justify-center flex-shrink-0">
+                      <Icon className="w-5 h-5 text-wedding-600" />
                     </div>
                     <div>
-                      <h4 className="font-semibold text-emerald-900 mb-1">{feature.title}</h4>
+                      <h4 className="font-semibold text-wedding-700 mb-1">{feature.title}</h4>
                       <p className="text-sm text-stone-500">{feature.description}</p>
                     </div>
                   </div>

@@ -55,14 +55,14 @@ const Header = () => {
             className={`flex items-center gap-3 group ${isRTL ? 'flex-row-reverse' : ''}`}
           >
             <div className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 ${
-              isScrolled ? 'bg-emerald-800' : 'bg-white/20 backdrop-blur-sm'
+              isScrolled ? 'bg-wedding-600' : 'bg-white/20 backdrop-blur-sm'
             }`}>
               <span className={`text-lg font-bold ${
                 isScrolled ? 'text-amber-400' : 'text-white'
               }`}>PW</span>
             </div>
             <span className={`text-lg font-semibold tracking-wide transition-colors duration-300 ${
-              isScrolled ? 'text-emerald-900' : 'text-white'
+              isScrolled ? 'text-wedding-800' : 'text-white'
             }`}>
               {companyInfo.name}
             </span>
@@ -75,7 +75,7 @@ const Header = () => {
                 key={link.href}
                 onClick={() => scrollToSection(link.href)}
                 className={`text-sm font-medium tracking-wide transition-all duration-300 hover:opacity-70 ${
-                  isScrolled ? 'text-emerald-900' : 'text-white'
+                  isScrolled ? 'text-wedding-800' : 'text-white'
                 }`}
               >
                 {link.label}
@@ -89,7 +89,7 @@ const Header = () => {
             <a
               href={`tel:${companyInfo.phone}`}
               className={`flex items-center gap-2 text-sm font-medium transition-colors duration-300 ${isRTL ? 'flex-row-reverse' : ''} ${
-                isScrolled ? 'text-emerald-800' : 'text-white'
+                isScrolled ? 'text-wedding-600' : 'text-white'
               }`}
             >
               <Phone className="w-4 h-4" />
@@ -99,7 +99,7 @@ const Header = () => {
               onClick={() => scrollToSection('#contact')}
               className={`transition-all duration-300 ${
                 isScrolled
-                  ? 'bg-emerald-800 hover:bg-emerald-900 text-white'
+                  ? 'bg-wedding-600 hover:bg-wedding-700 text-white'
                   : 'bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white border border-white/30'
               }`}
             >
@@ -113,7 +113,7 @@ const Header = () => {
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={`p-2 rounded-lg transition-colors ${
-                isScrolled ? 'text-emerald-900' : 'text-white'
+                isScrolled ? 'text-wedding-800' : 'text-white'
               }`}
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -130,7 +130,7 @@ const Header = () => {
                   key={link.href}
                   onClick={() => scrollToSection(link.href)}
                   className={`text-base font-medium ${isRTL ? 'text-right' : 'text-left'} ${
-                    isScrolled ? 'text-emerald-900' : 'text-white'
+                    isScrolled ? 'text-wedding-800' : 'text-white'
                   }`}
                 >
                   {link.label}
@@ -138,7 +138,7 @@ const Header = () => {
               ))}
               <Button
                 onClick={() => scrollToSection('#contact')}
-                className="mt-2 bg-emerald-800 hover:bg-emerald-900 text-white w-full"
+                className="mt-2 bg-wedding-600 hover:bg-wedding-700 text-white w-full"
               >
                 {t.nav.inquire}
               </Button>

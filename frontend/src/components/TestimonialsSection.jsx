@@ -9,7 +9,7 @@ const TestimonialsSection = () => {
   const t = translations[currentLang].testimonials;
 
   return (
-    <section className="py-24 bg-emerald-950 relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
+    <section className="py-24 bg-wedding-800 relative overflow-hidden" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Decorative Elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-amber-400/30 to-transparent" />
@@ -57,7 +57,7 @@ const TestimonialsSection = () => {
                 {/* Author */}
                 <div className={`flex items-center gap-3 ${isRTL ? 'flex-row-reverse' : ''}`}>
                   <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
-                    <span className="text-emerald-950 font-bold text-lg">
+                    <span className="text-wedding-900 font-bold text-lg">
                       {testimonial.name.charAt(0)}
                     </span>
                   </div>

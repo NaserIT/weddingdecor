@@ -33,7 +33,7 @@ const HeroSection = () => {
           alt="Hochzeitsdekoration"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-emerald-950/70 via-emerald-900/50 to-emerald-950/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-wedding-900/70 via-wedding-800/50 to-wedding-900/80" />
       </div>
 
       {/* Decorative Elements */}
@@ -70,7 +70,7 @@ const HeroSection = () => {
           <Button
             onClick={scrollToContact}
             size="lg"
-            className="bg-amber-500 hover:bg-amber-600 text-emerald-950 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 shadow-lg shadow-amber-500/30"
+            className="bg-amber-500 hover:bg-amber-600 text-wedding-900 font-semibold px-8 py-6 text-lg rounded-full transition-all duration-300 hover:scale-105 shadow-lg shadow-amber-500/30"
           >
             {t.cta}
           </Button>
