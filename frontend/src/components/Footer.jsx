@@ -41,7 +41,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-emerald-950 text-white" dir={isRTL ? 'rtl' : 'ltr'}>
+    <footer className="bg-wedding-800 text-white" dir={isRTL ? 'rtl' : 'ltr'}>
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -49,7 +49,7 @@ const Footer = () => {
           <div className="lg:col-span-2">
             <div className={`flex items-center gap-3 mb-6 ${isRTL ? 'flex-row-reverse' : ''}`}>
               <div className="w-12 h-12 rounded-full bg-amber-400 flex items-center justify-center">
-                <span className="text-emerald-950 font-bold text-xl">PW</span>
+                <span className="text-wedding-800 font-bold text-xl">PW</span>
               </div>
               <span className="text-2xl font-semibold">{companyInfo.name}</span>
             </div>
@@ -146,7 +146,7 @@ const Footer = () => {
             </div>
             <button
               onClick={scrollToTop}
-              className="w-10 h-10 rounded-full bg-amber-400 text-emerald-950 flex items-center justify-center hover:bg-amber-500 transition-colors"
+              className="w-10 h-10 rounded-full bg-amber-400 text-wedding-800 flex items-center justify-center hover:bg-amber-500 transition-colors"
             >
               <ArrowUp className="w-5 h-5" />
             </button>

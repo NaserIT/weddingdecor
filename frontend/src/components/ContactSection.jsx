@@ -106,10 +106,10 @@ const ContactSection = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 bg-emerald-100 text-emerald-800 text-sm font-medium rounded-full mb-4">
+          <span className="inline-block px-4 py-1.5 bg-wedding-100 text-wedding-700 text-sm font-medium rounded-full mb-4">
             {t.badge}
           </span>
-          <h2 className="text-3xl md:text-5xl font-bold text-emerald-950 mb-4">
+          <h2 className="text-3xl md:text-5xl font-bold text-wedding-800 mb-4">
             {t.title}
             <span className="text-amber-600"> {t.titleHighlight}</span> {t.titleEnd}
           </h2>
@@ -125,12 +125,12 @@ const ContactSection = () => {
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow">
                 <CardContent className="p-6">
                   <a href={info.href} className={`flex items-center gap-4 group ${isRTL ? 'flex-row-reverse' : ''}`}>
-                    <div className="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center group-hover:bg-emerald-200 transition-colors">
-                      <info.icon className="w-5 h-5 text-emerald-700" />
+                    <div className="w-12 h-12 rounded-full bg-wedding-100 flex items-center justify-center group-hover:bg-wedding-200 transition-colors">
+                      <info.icon className="w-5 h-5 text-wedding-600" />
                     </div>
                     <div className={isRTL ? 'text-right' : ''}>
                       <p className="text-sm text-stone-500">{info.label}</p>
-                      <p className="font-semibold text-emerald-900 group-hover:text-emerald-700 transition-colors">
+                      <p className="font-semibold text-wedding-700 group-hover:text-wedding-600 transition-colors">
                         {info.value}
                       </p>
                     </div>
@@ -172,7 +172,7 @@ const ContactSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Name - Required */}
                   <div className="space-y-2">
-                    <Label htmlFor="name" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                    <Label htmlFor="name" className={`text-wedding-700 ${isRTL ? 'block text-right' : ''}`}>
                       {t.form.name} <span className="text-red-500">*</span>
                     </Label>
                     <Input
@@ -182,13 +182,13 @@ const ContactSection = () => {
                       onChange={handleChange}
                       placeholder={t.form.namePlaceholder}
                       required
-                      className={`border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 ${isRTL ? 'text-right' : ''}`}
+                      className={`border-stone-200 focus:border-wedding-500 focus:ring-wedding-500 ${isRTL ? 'text-right' : ''}`}
                     />
                   </div>
 
                   {/* Email - Required */}
                   <div className="space-y-2">
-                    <Label htmlFor="email" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                    <Label htmlFor="email" className={`text-wedding-700 ${isRTL ? 'block text-right' : ''}`}>
                       {t.form.emailLabel} <span className="text-red-500">*</span>
                     </Label>
                     <Input
@@ -199,13 +199,13 @@ const ContactSection = () => {
                       onChange={handleChange}
                       placeholder={t.form.emailPlaceholder}
                       required
-                      className={`border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 ${isRTL ? 'text-right' : ''}`}
+                      className={`border-stone-200 focus:border-wedding-500 focus:ring-wedding-500 ${isRTL ? 'text-right' : ''}`}
                     />
                   </div>
 
                   {/* Phone - Optional */}
                   <div className="space-y-2">
-                    <Label htmlFor="phone" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                    <Label htmlFor="phone" className={`text-wedding-700 ${isRTL ? 'block text-right' : ''}`}>
                       {t.phone} <span className="text-stone-400 text-sm">({t.form.optional})</span>
                     </Label>
                     <Input
@@ -215,13 +215,13 @@ const ContactSection = () => {
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder={t.form.phonePlaceholder}
-                      className={`border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 ${isRTL ? 'text-right' : ''}`}
+                      className={`border-stone-200 focus:border-wedding-500 focus:ring-wedding-500 ${isRTL ? 'text-right' : ''}`}
                     />
                   </div>
 
                   {/* Event Date - Optional */}
                   <div className="space-y-2">
-                    <Label htmlFor="eventDate" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                    <Label htmlFor="eventDate" className={`text-wedding-700 ${isRTL ? 'block text-right' : ''}`}>
                       {t.form.eventDate} <span className="text-stone-400 text-sm">({t.form.optional})</span>
                     </Label>
                     <Input
@@ -230,18 +230,18 @@ const ContactSection = () => {
                       type="date"
                       value={formData.eventDate}
                       onChange={handleChange}
-                      className="border-stone-200 focus:border-emerald-500 focus:ring-emerald-500"
+                      className="border-stone-200 focus:border-wedding-500 focus:ring-wedding-500"
                     />
                   </div>
                 </div>
 
                 {/* Products - Optional */}
                 <div className="space-y-2">
-                  <Label htmlFor="products" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                  <Label htmlFor="products" className={`text-wedding-700 ${isRTL ? 'block text-right' : ''}`}>
                     {t.form.products} <span className="text-stone-400 text-sm">({t.form.optional})</span>
                   </Label>
                   <Select value={formData.products} onValueChange={handleSelectChange}>
-                    <SelectTrigger className={`border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 ${isRTL ? 'text-right' : ''}`}>
+                    <SelectTrigger className={`border-stone-200 focus:border-wedding-500 focus:ring-wedding-500 ${isRTL ? 'text-right' : ''}`}>
                       <SelectValue placeholder={t.form.productsPlaceholder} />
                     </SelectTrigger>
                     <SelectContent>
@@ -256,7 +256,7 @@ const ContactSection = () => {
 
                 {/* Message - Required */}
                 <div className="space-y-2">
-                  <Label htmlFor="message" className={`text-emerald-900 ${isRTL ? 'block text-right' : ''}`}>
+                  <Label htmlFor="message" className={`text-wedding-700 ${isRTL ? 'block text-right' : ''}`}>
                     {t.form.message} <span className="text-red-500">*</span>
                   </Label>
                   <Textarea
@@ -267,7 +267,7 @@ const ContactSection = () => {
                     placeholder={t.form.messagePlaceholder}
                     rows={5}
                     required
-                    className={`border-stone-200 focus:border-emerald-500 focus:ring-emerald-500 resize-none ${isRTL ? 'text-right' : ''}`}
+                    className={`border-stone-200 focus:border-wedding-500 focus:ring-wedding-500 resize-none ${isRTL ? 'text-right' : ''}`}
                   />
                 </div>
 
@@ -277,7 +277,7 @@ const ContactSection = () => {
                     id="terms"
                     checked={acceptTerms}
                     onCheckedChange={setAcceptTerms}
-                    className="mt-1 data-[state=checked]:bg-emerald-600 data-[state=checked]:border-emerald-600"
+                    className="mt-1 data-[state=checked]:bg-wedding-600 data-[state=checked]:border-wedding-600"
                   />
                   <Label htmlFor="terms" className={`text-sm text-stone-600 cursor-pointer ${isRTL ? 'text-right' : ''}`}>
                     {t.form.privacy} <span className="text-red-500">*</span>
@@ -288,7 +288,7 @@ const ContactSection = () => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full bg-emerald-800 hover:bg-emerald-900 text-white py-6 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02]"
+                  className="w-full bg-wedding-600 hover:bg-wedding-700 text-white py-6 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-[1.02]"
                 >
                   {isSubmitting ? (
                     <span className={`flex items-center gap-2 ${isRTL ? 'flex-row-reverse' : ''}`}>

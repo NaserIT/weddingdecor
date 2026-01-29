@@ -20,7 +20,7 @@ const LanguageSwitcher = ({ isScrolled }) => {
           size="sm"
           className={`flex items-center gap-2 transition-colors ${
             isScrolled
-              ? 'text-emerald-900 hover:text-emerald-700 hover:bg-emerald-50'
+              ? 'text-wedding-800 hover:text-wedding-600 hover:bg-wedding-50'
               : 'text-white hover:text-white/80 hover:bg-white/10'
           }`}
         >
@@ -34,7 +34,7 @@ const LanguageSwitcher = ({ isScrolled }) => {
             key={lang.code}
             onClick={() => switchLanguage(lang.code)}
             className={`flex items-center gap-3 cursor-pointer ${
-              currentLang === lang.code ? 'bg-emerald-50 text-emerald-900' : ''
+              currentLang === lang.code ? 'bg-wedding-50 text-wedding-800' : ''
             }`}
           >
             <span className="text-lg">{lang.flag}</span>
